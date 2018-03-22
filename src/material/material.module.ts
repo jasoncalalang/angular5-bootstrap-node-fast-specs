@@ -5,12 +5,13 @@ import {
   MatButtonModule,
   MatCardModule,
   MatCheckboxModule,
+  MatGridListModule,
   MatIconModule,
   MatInputModule,
   MatListModule,
   MatSidenavModule,
   MatSnackBarModule,
-  MatToolbarModule
+  MatToolbarModule,
 } from '@angular/material';
 
 @NgModule({
@@ -18,23 +19,25 @@ import {
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
+    MatGridListModule,
     MatIconModule,
     MatInputModule,
     MatListModule,
     MatSidenavModule,
     MatSnackBarModule,
-    MatToolbarModule
+    MatToolbarModule,
   ],
   exports: [
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
+    MatGridListModule,
     MatIconModule,
     MatInputModule,
     MatListModule,
     MatSidenavModule,
     MatSnackBarModule,
-    MatToolbarModule
+    MatToolbarModule,
   ],
   providers: [{provide: MATERIAL_SANITY_CHECKS, useValue: false}]
 })
