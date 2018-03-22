@@ -4,6 +4,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from '../material/material.module';
 
 import {RootComponent} from './root.component';
+import {HeaderModule} from '../common/header/header.module';
+import {TileModule} from '../tile/tile.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +14,9 @@ import {RootComponent} from './root.component';
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
-    MaterialModule
+    MaterialModule,
+    HeaderModule,
+    TileModule
   ],
   exports: [RootComponent],
   providers: [],

@@ -3,8 +3,10 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'root',
   template: `
+    <header-nav></header-nav>
     <h1>hello world!</h1>
-    <button type="button" class="btn btn-primary" rel="hi-button">Hi</button>
+    <button mat-raised-button color="primary" rel="hi-button">Hi</button>
+    <tile></tile>
   `,
     styles: [`
       * {
