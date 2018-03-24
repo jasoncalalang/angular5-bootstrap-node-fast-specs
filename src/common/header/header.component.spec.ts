@@ -7,8 +7,24 @@ require('should');
 describe('the header should show', () => {
   let element;
 
-  it('something', () => {
-    element.querySelector('mat-toolbar[rel="header"]').textContent.should.containEql('Something');
+  it.skip('an image', () => {
+    element.querySelector('img[src]').should.not.be.empty();
+  });
+
+  it('Home', () => {
+    element.querySelector('a[rel=home-label]').textContent.should.containEql('Home (current)');
+  });
+
+  it('Features', () => {
+    element.querySelector('a[rel=features-label]').textContent.should.containEql('Features');
+  });
+
+  it('Pricing', () => {
+    element.querySelector('a[rel=pricing-label]').textContent.should.containEql('Pricing');
+  });
+
+  it('Shopping Cart', () => {
+    element.querySelector('a[rel=shoppingcart-label]').textContent.should.containEql('Shopping Cart');
   });
 
   beforeEach(() => {

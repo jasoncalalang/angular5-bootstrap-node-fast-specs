@@ -7,9 +7,14 @@ require('should');
 describe('tile component should show', () => {
   let element;
 
-  it.skip('something', () => {
-    element.querySelector('mat-card-title[rel=card-title]').textContent.should.containEql('1');
-  });
+  it('name');
+  it('price');
+  it('vendor');
+  it('button');
+
+  // it('something', () => {
+  //   element.querySelector('mat-card-title[rel=card-title]').textContent.should.containEql('1');
+  // });
 
   beforeEach(() => {
     return TestBed.configureTestingModule({

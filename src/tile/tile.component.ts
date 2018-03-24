@@ -28,11 +28,22 @@ export class TileComponent implements OnInit {
   }
 
   ngOnInit() {
-    const url = 'http://www.mocky.io/v2/5ab2fbd22e00003d044cc37f';
+    const url = 'http://www.mocky.io/v2/5ab5260a3000002b008278f0';
     this.fetch(url);
   }
 
   fetch (url) {
+
+    // Promise
+    // ===============
+    // return new Promise((resolve) => {
+    //   this.productService.fetch(url).then((result) => {
+    //     resolve(result);
+    //   });
+    // });
+
+    // Observable
+    // ===============
     this.productService.fetch(url).subscribe(response => {
       this.products = response.products;
     });
