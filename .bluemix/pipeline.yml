@@ -39,8 +39,6 @@ stages:
 
           npm install -s
           npm run ci -s
-          npm run build -s
-          npm prune -s
 
           git checkout integration
           git pull origin integration
@@ -132,7 +130,7 @@ stages:
 
           git checkout integration
           git pull origin integration
-          git merge dev2 --no-ff --log
+          git merge dev3 --no-ff --log
           git push origin integration --no-verify
   - name: integration
     inputs:
