@@ -46,10 +46,6 @@ stages:
           git pull origin integration
           git merge dev1 --no-ff --log
           git push origin integration --no-verify
-
-          git checkout --track origin/archive
-          git pull origin archive
-          git merge dev1 --no-ff --log
   - name: dev2
     inputs:
       - type: git
@@ -94,10 +90,50 @@ stages:
           git pull origin integration
           git merge dev2 --no-ff --log
           git push origin integration --no-verify
+  - name: dev3
+    inputs:
+      - type: git
+        branch: dev3
+        service: ${SOURCE_CONTROL_SERVICE}
+    triggers:
+      - enabled: false
+    jobs:
+      - name: distribution
+        type: builder
+        artifact_dir: archive
+        enable_tests: true
+        test_file_pattern: '*.xml, generated/*.xml'
+        build_type: npm
+        script: |-
+          #!/bin/bash
+          git config --global user.email "jcalalang@ph.ibm.com"
+          git config --global user.name "jason.calalang"
 
-          git checkout --track origin/archive
-          git pull origin archive
+          export NVM_DIR=/home/pipeline/nvm
+          export NODE_VERSION=v8.9.4
+          export NVM_VERSION=v0.33.2
+          npm config delete prefix \
+            && curl https://raw.githubusercontent.com/creationix/nvm/${NVM_VERSION}/install.sh | sh \
+            && . $NVM_DIR/nvm.sh \
+            && nvm install $NODE_VERSION \
+            && nvm alias default $NODE_VERSION \
+            && nvm use default \
+            && node -v \
+            && npm -v \
+            && export PATH=${NVM_DIR}/versions/node/${NODE_VERSION}/bin:./node_modules/.bin:$PATH
+
+          git branch -a
+          git branch integration
+          git fetch origin integration
+          git merge integration --ff-only
+
+          npm install -s
+          npm run ci -s
+
+          git checkout integration
+          git pull origin integration
           git merge dev2 --no-ff --log
+          git push origin integration --no-verify
   - name: integration
     inputs:
       - type: git
@@ -142,10 +178,21 @@ stages:
           #!/bin/bash
           printenv
 
-          ls -al
-          tar -zxvf dist.tar.gz
-          rm dist.tar.gz
-          ls -al
+          export NVM_DIR=/home/pipeline/nvm
+          export NODE_VERSION=v8.9.4
+          export NVM_VERSION=v0.33.2
+          npm config delete prefix \
+            && curl https://raw.githubusercontent.com/creationix/nvm/${NVM_VERSION}/install.sh | sh \
+            && . $NVM_DIR/nvm.sh \
+            && nvm install $NODE_VERSION \
+            && nvm alias default $NODE_VERSION \
+            && nvm use default \
+            && node -v \
+            && npm -v \
+            && export PATH=${NVM_DIR}/versions/node/${NODE_VERSION}/bin:./node_modules/.bin:$PATH
+
+          npm install -s
+          npm build --prod -s
 
           cf add-plugin-repo CF-Community http://plugins.cloudfoundry.org
           cf install-plugin blue-green-deploy -r CF-Community <<< y
