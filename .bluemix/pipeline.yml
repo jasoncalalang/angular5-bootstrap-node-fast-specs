@@ -10,7 +10,6 @@ stages:
     jobs:
       - name: build
         type: builder
-        artifact_dir: archive
         enable_tests: true
         test_file_pattern: '*.xml, generated/*.xml'
         build_type: npm
@@ -54,7 +53,6 @@ stages:
     jobs:
       - name: distribution
         type: builder
-        artifact_dir: archive
         enable_tests: true
         test_file_pattern: '*.xml, generated/*.xml'
         build_type: npm
@@ -98,7 +96,6 @@ stages:
     jobs:
       - name: distribution
         type: builder
-        artifact_dir: archive
         enable_tests: true
         test_file_pattern: '*.xml, generated/*.xml'
         build_type: npm
