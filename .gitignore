@@ -9,6 +9,7 @@
 /contracts/logs
 /.webpack
 yarn-error.log
+archive/
 
 # dependencies
 /node_modules
