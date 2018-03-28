@@ -47,9 +47,6 @@ stages:
           git merge dev1 --no-ff --log
           git push origin integration --no-verify
 
-          git checkout --track origin/archive
-          git pull origin archive
-          git merge dev1 --no-ff --log
   - name: dev2
     inputs:
       - type: git
@@ -95,9 +92,6 @@ stages:
           git merge dev2 --no-ff --log
           git push origin integration --no-verify
 
-          git checkout --track origin/archive
-          git pull origin archive
-          git merge dev2 --no-ff --log
   - name: integration
     inputs:
       - type: git
@@ -141,11 +135,6 @@ stages:
         script: |-
           #!/bin/bash
           printenv
-
-          ls -al
-          tar -zxvf dist.tar.gz
-          rm dist.tar.gz
-          ls -al
 
           cf add-plugin-repo CF-Community http://plugins.cloudfoundry.org
           cf install-plugin blue-green-deploy -r CF-Community <<< y
