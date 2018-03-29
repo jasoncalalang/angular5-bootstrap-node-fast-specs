@@ -162,7 +162,7 @@ stages:
             && export PATH=${NVM_DIR}/versions/node/${NODE_VERSION}/bin:./node_modules/.bin:$PATH
 
           npm install -s
-          npm build --prod -s
+          npm run build --prod -s
 
           ls -al
 
