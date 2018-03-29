@@ -132,7 +132,7 @@ stages:
   - name: integration
     inputs:
       - type: git
-        branch: archive
+        branch: integration
         service: ${SOURCE_CONTROL_SERVICE}
     triggers:
       - type: commit
